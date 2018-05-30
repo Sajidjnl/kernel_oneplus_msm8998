@@ -1536,7 +1536,10 @@ static void update_lra_frequency(struct qpnp_hap *hap)
 
     lra_init_freq = 200000/temp;
 
-    if ((abs(lra_init_freq-235)*100/235) >= 5) {
+	if ((abs(lra_init_freq-235)*100/235) < 5) {
+        lra_auto_res_lo = lra_auto_res_lo;
+        lra_auto_res_hi = lra_auto_res_hi;
+    }else{
         lra_auto_res_lo = 0x53;
         lra_auto_res_hi = 0x3;
     }
